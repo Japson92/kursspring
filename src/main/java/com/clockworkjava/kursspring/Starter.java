@@ -13,10 +13,8 @@ public class Starter implements CommandLineRunner {
     @Autowired
     Castle castle;
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... strings) throws Exception {
 
         System.out.println(castle);
-
-
     }
 }

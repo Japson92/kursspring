@@ -22,7 +22,7 @@ class KursspringApplicationTests {
 
 	@Test
 	public void testCastle(){
-		String except = "Znajduje sie tu zamek o nazwie East Watch. Zamieszkaly przez rycerza Rycerz o imieniu Lancelot(29)";
+		String except = "Znajduje sie tu zamek o nazwie East Watch. Zamieszkaly przez rycerza Rycerz o imieniu Lancelot(29). Zadanie: Uratuj ksiezniczke";
 		assertEquals(except, castle.toString());
 	}
 }

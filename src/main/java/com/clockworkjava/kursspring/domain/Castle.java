@@ -19,7 +19,11 @@ public class Castle {
     @Autowired
     public Castle(Knight knight){
         this.knight = knight;
+    }
 
+   Castle(Knight knight, String name) {
+        this.knight = knight;
+        this.name = name;
     }
 
     @PostConstruct
@@ -28,7 +32,7 @@ public class Castle {
     }
 
     @PreDestroy
-    public void getDown(){
+    public void tearDown(){
         System.out.println("Zaraz wyburzymy zamek " + name);
     }
 
