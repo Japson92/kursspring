@@ -1,15 +1,10 @@
 package com.clockworkjava.kursspring.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-@Component
 public class Knight {
 
-    private String name = "Lancelot";
+    private String name;
 
-    private int age = 29;
+    private int age;
 
     private Quest quest;
 
@@ -21,12 +16,11 @@ public class Knight {
 //        this.age = age;
 //        this.quest = quest;
 //    }
-//    public Knight(String name, int age) {
-//        this.name = name;
-//        this.age = age;
-//
-//    }
-@Autowired
+    public Knight(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public void setQuest(Quest quest){
     System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;
