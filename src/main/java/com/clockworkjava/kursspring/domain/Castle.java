@@ -1,15 +1,24 @@
 package com.clockworkjava.kursspring.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
+@PropertySource("classpath:castle.properties")
 public class Castle {
-    private String name = "East Watch";
+    @Value("${my.castle.name}")
+    private String name;
 
-    public Castle(){
+
+    Knight knight;
+    @Autowired
+    public Castle(Knight knight){
+        this.knight = knight;
 
     }
 
@@ -25,6 +34,6 @@ public class Castle {
 
     @Override
     public String toString(){
-        return "Znajduje sie tu zamek o nazwie " + this.name;
+        return "Znajduje sie tu zamek o nazwie " + this.name + ". Zamieszkaly przez rycerza " + knight;
     }
 }
