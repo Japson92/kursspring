@@ -1,28 +1,30 @@
 package com.clockworkjava.kursspring;
 
-import com.clockworkjava.kursspring.domain.Castle;
-
-import com.clockworkjava.kursspring.domain.Tournament;
+import com.clockworkjava.kursspring.domain.repository.KnightRepository;
+import com.clockworkjava.kursspring.domain.repository.QuestRepository;
+import com.clockworkjava.kursspring.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class Starter implements CommandLineRunner {
 
+    @Autowired
+    KnightRepository knightRepository;
 
     @Autowired
-    Castle castle;
+    QuestRepository questRepository;
 
     @Autowired
-    Tournament tournament;
+    QuestService questService;
+
     @Override
     public void run(String... strings) throws Exception {
 
-        System.out.println(castle);
-        tournament.duel();
-        System.out.println(tournament);
+        questService.assignRandomQuest("Lancelot");
+        questService.assignRandomQuest("Percival");
 
-
+        System.out.println(knightRepository);
     }
 }

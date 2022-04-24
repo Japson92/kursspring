@@ -6,11 +6,11 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:property-placeholder location="classpath:castle.properties"/>
+    <context:property-placeholder location="classpath:knightRepository.properties"/>
 
-    <bean id="zamek" class="com.clockworkjava.kursspring.domain.Castle" init-method="build" destroy-method="tearDown">
+    <bean id="zamek" class="com.clockworkjava.kursspring.domain.repository.KnightRepository" init-method="build" destroy-method="tearDown">
         <constructor-arg index="0" ref="lancelot"/>
-        <property name="name" value="${my.castle.name:East Watch}"/>
+        <property name="name" value="${my.knightRepository.name:East Watch}"/>
     </bean>
 
     <bean id="tournament" class="com.clockworkjava.kursspring.domain.Tournament">

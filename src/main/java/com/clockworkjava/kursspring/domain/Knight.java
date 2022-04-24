@@ -30,7 +30,7 @@ public class Knight {
         this.age = age;
     }
 
-@Autowired
+
     public void setQuest(Quest quest){
     System.out.println("Ustawiam zadanie dla rycerza.");
         this.quest = quest;
@@ -59,6 +59,6 @@ public class Knight {
 
     @Override
     public String toString() {
-        return "Rycerz o imieniu " + name + "(" + age + "). Zadanie: " + quest;
+        return "Rycerz o imieniu " + name + "(" + age + "). Ma za zadanie " + quest;
     }
 }
