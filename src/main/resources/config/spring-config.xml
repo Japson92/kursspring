@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
@@ -25,6 +25,12 @@
         <constructor-arg index="1" value="25"/>
         <property name="quest" ref="quest"/>
     </bean>
+
+    <task:scheduler id="myScheduler" pool-size="10"/>
+
+    <task:scheduled-tasks>
+        <task:scheduled ref="questRepository" method="createRandomQuest" fixed-rate="1000"/>
+    </task:scheduled-tasks>
 
 
 </beans>
