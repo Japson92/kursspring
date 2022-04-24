@@ -9,7 +9,12 @@
     <context:property-placeholder location="classpath:castle.properties"/>
 
     <bean id="zamek" class="com.clockworkjava.kursspring.domain.Castle" init-method="build" destroy-method="tearDown">
-        <constructor-arg index="0" ref="knight"/>
+        <constructor-arg index="0" ref="lancelot"/>
         <property name="name" value="${my.castle.name:East Watch}"/>
+    </bean>
+
+    <bean id="tournament" class="com.clockworkjava.kursspring.domain.Tournament">
+        <property name="knight"/>
+
     </bean>
 </beans>
