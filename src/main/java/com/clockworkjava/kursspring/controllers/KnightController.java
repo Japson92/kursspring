@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,5 +35,11 @@ public class KnightController {
     public String saveKnights(Knight knight){
         service.saveKnight(knight);
         return "redirect:/knights";
+    }
+    @RequestMapping("/knight")
+    public String getKnight(@RequestParam("id") Integer id, Model model){
+        Knight knight = service.getKnight(id);
+        model.addAttribute("knight", knight);
+        return "knight";
     }
 }
