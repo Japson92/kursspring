@@ -8,7 +8,7 @@
 
     <context:property-placeholder location="classpath:knightRepository.properties"/>
 
-    <bean id="zamek" class="com.clockworkjava.kursspring.domain.repository.KnightRepository" init-method="build" destroy-method="tearDown">
+    <bean id="zamek" class="com.clockworkjava.kursspring.domain.repository.InMemoryRepository" init-method="build" destroy-method="tearDown">
         <constructor-arg index="0" ref="lancelot"/>
         <property name="name" value="${my.knightRepository.name:East Watch}"/>
     </bean>

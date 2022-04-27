@@ -48,7 +48,6 @@ public class QuestRepository {
         descriprions.add("Zabij smoka");
 
         String description = descriprions.get(rand.nextInt(descriprions.size()));
-        System.out.println("Utworzylem zadanie o opisie " + description);
         createQuest(description);
     }
 }
