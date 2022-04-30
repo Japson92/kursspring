@@ -1,15 +1,28 @@
 package com.clockworkjava.kursspring.domain;
 
+import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 
 public class Knight {
 
     private int id;
+
+    @NotNull
+    @Size(min = 2,max = 40,message = "Imie rycerza musi miec miedzy 2, a 40 znakow")
     private String name;
+
+    @NotNull
+    @Range(min = 18,max = 60, message = "Rycerze musi miec conajmniej 18 lat ale nie wiecej niz 60")
     private int age;
+
     private int level;
+
     private Quest quest;
 
     public Knight() {
