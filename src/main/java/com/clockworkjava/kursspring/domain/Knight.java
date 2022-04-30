@@ -26,6 +26,7 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
+        this.level = 1;
     }
 
     public Knight(String name, int age) {
@@ -37,7 +38,12 @@ public class Knight {
 
     public void setQuest(Quest quest) {
         System.out.println("Ustawiam zadanie dla rycerza.");
+        quest.setStarted(true);
         this.quest = quest;
+    }
+
+    public Quest getQuest() {
+        return quest;
     }
 
     public void setAge(int age) {
@@ -46,14 +52,6 @@ public class Knight {
 
     public int getAge() {
         return age;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Knight knight = (Knight) o;
-        return age == knight.age;
     }
 
     public String getName() {
@@ -78,6 +76,14 @@ public class Knight {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Knight knight = (Knight) o;
+        return age == knight.age;
     }
 
     @Override
