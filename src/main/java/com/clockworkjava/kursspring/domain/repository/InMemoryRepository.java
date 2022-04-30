@@ -1,7 +1,6 @@
 package com.clockworkjava.kursspring.domain.repository;
 
 import com.clockworkjava.kursspring.domain.Knight;
-
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,24 +24,16 @@ public class InMemoryRepository implements KnightRepository {
         knights.put(newKnight.getId(), newKnight);
     }
 
-    private int getNewId() {
-        if (knights.isEmpty()) {
-            return 0;
-        } else {
-            Integer integer = knights.keySet().stream().max(Integer::max).get();
-            return integer + 1;
-
-        }
-    }
-
     @Override
     public Collection<Knight> getAllKnights(){
-       return knights.values();
+        return knights.values();
     }
 
     @Override
     public Optional<Knight> getKnight(String name){
+
         Optional<Knight> knightByName = knights.values().stream().filter(knight -> knight.getName().equals(name)).findAny();
+
         return knightByName;
     }
 
@@ -50,16 +41,17 @@ public class InMemoryRepository implements KnightRepository {
     public void deleteKnight(Integer id){
         knights.remove(id);
     }
+
     @Override
     @PostConstruct
     public void build(){
-       createKnight("Lancelot",29);
-       createKnight("Percival",25);
+        createKnight("Lancelot",29);
+        createKnight("Percival",25);
     }
-
     @Override
     public void createKnight(Knight knight) {
-
+        knight.setId(getNewId());
+        knights.put(knight.getId(), knight);
     }
 
     @Override
@@ -73,5 +65,16 @@ public class InMemoryRepository implements KnightRepository {
                 "knights=" + knights +
                 '}';
     }
+
+    private int getNewId() {
+        if (knights.isEmpty()) {
+            return 0;
+        } else {
+            Integer integer = knights.keySet().stream().max(Integer::compareTo).get();
+            return integer + 1;
+
+        }
+    }
+
 }
 
