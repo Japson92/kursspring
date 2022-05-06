@@ -1,9 +1,6 @@
 package com.clockworkjava.kursspring.domain;
 
 import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -37,8 +34,9 @@ public class Knight {
 
 
     public void setQuest(Quest quest) {
-        System.out.println("Ustawiam zadanie dla rycerza.");
-        quest.setStarted(true);
+        if (quest != null) {
+            quest.setStarted(true);
+        }
         this.quest = quest;
     }
 

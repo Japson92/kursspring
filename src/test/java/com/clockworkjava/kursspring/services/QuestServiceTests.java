@@ -1,5 +1,6 @@
 package com.clockworkjava.kursspring.services;
 
+import com.clockworkjava.kursspring.domain.Knight;
 import com.clockworkjava.kursspring.domain.Quest;
 import com.clockworkjava.kursspring.domain.repository.QuestRepository;
 
@@ -46,4 +47,5 @@ public class QuestServiceTests {
         assertEquals("Size of returned quest", 2, allNotStartedQuests.size());
         assertThat(allNotStartedQuests, containsInAnyOrder(q1,q3));
     }
+
 }
