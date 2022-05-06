@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @Scope("singleton")
 public class Starter implements CommandLineRunner {
@@ -22,6 +24,7 @@ public class Starter implements CommandLineRunner {
     QuestService questService;
 
     @Override
+    @Transactional
     public void run(String... strings) throws Exception {
 
         questRepository.createRandomQuest();

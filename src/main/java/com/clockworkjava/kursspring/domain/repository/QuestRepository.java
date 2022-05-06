@@ -6,20 +6,27 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
 public class QuestRepository {
+    @PersistenceContext
+    private EntityManager em;
     Random rand = new Random();
 
     Map<Integer, Quest> quests = new HashMap<>();
 
 
-
+    @Transactional
     public void createQuest(String description){
-        int newId = Ids.generateNewId(quests.keySet());
-        Quest quest = new Quest(newId, description);
-        quests.put(newId, quest);
+
+        Quest quest = new Quest(description);
+
+        em.persist(quest);
+
     }
 
     public List<Quest> getAll() {
