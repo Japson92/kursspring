@@ -15,7 +15,7 @@ public class MainConfig {
         KnightRepository repo = new InMemoryRepository();
         return repo;
     }
-    @Bean(name = "DBKnightRepository")
+    @Bean(name="DBKnightRepository")
     @Profile("prod")
     public KnightRepository createDBRepo() {
         KnightRepository repo = new DBKnightRepository();

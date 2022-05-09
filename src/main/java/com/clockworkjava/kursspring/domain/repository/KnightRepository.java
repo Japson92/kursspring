@@ -1,8 +1,6 @@
 package com.clockworkjava.kursspring.domain.repository;
 
 import com.clockworkjava.kursspring.domain.Knight;
-
-
 import java.util.Collection;
 import java.util.Optional;
 

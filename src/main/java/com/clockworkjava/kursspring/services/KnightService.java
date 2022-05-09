@@ -3,8 +3,11 @@ package com.clockworkjava.kursspring.services;
 import com.clockworkjava.kursspring.domain.Knight;
 import com.clockworkjava.kursspring.domain.PlayerInformation;
 import com.clockworkjava.kursspring.domain.repository.KnightRepository;
+import com.clockworkjava.kursspring.domain.repository.PlayerInformationRepository;
+import com.clockworkjava.kursspring.domain.repository.QuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +20,10 @@ public class KnightService {
     KnightRepository knightRepository;
 
     @Autowired
-    PlayerInformation playerInformation;
+    QuestRepository questRepository;
+
+    @Autowired
+    PlayerInformationRepository playerInformationRepository;
 
     public List<Knight> getAllKnights() {
         return new ArrayList<>(knightRepository.getAllKnights());
@@ -59,16 +65,22 @@ public class KnightService {
         return sum;
     }
 
+    @Transactional
     public void getMyGold() {
 
         List<Knight> allKnights = getAllKnights();
         allKnights.forEach(knight -> {
             if (knight.getQuest() != null) {
-                knight.getQuest().isCompleted();
+                boolean completed = knight.getQuest().isCompleted();
+
+                if(completed){
+                    questRepository.update(knight.getQuest());
+                }
             }
         });
 
-        int currentGold = playerInformation.getGold();
-        playerInformation.setGold(currentGold + collectRewards());
+        PlayerInformation first = playerInformationRepository.getFirst();
+        int currentGold = first.getGold();
+        first.setGold(currentGold + collectRewards());
     }
 }

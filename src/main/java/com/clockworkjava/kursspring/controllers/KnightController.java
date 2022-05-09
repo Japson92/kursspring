@@ -3,6 +3,7 @@ package com.clockworkjava.kursspring.controllers;
 import com.clockworkjava.kursspring.components.TimeComponent;
 import com.clockworkjava.kursspring.domain.Knight;
 import com.clockworkjava.kursspring.domain.PlayerInformation;
+import com.clockworkjava.kursspring.domain.repository.PlayerInformationRepository;
 import com.clockworkjava.kursspring.services.KnightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class KnightController {
     TimeComponent timeComponent;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @Autowired
     KnightService service;
@@ -32,6 +33,7 @@ public class KnightController {
     @RequestMapping("/knights")
     public String getKnights(Model model){
         List<Knight> allKnights = service.getAllKnights();
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knights",allKnights);
         model.addAttribute("timecomponent",timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -41,6 +43,7 @@ public class KnightController {
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model){
         Knight knight = service.getKnight(id);
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", knight);
         model.addAttribute("timecomponent",timeComponent);
         model.addAttribute("playerinformation", playerInformation);
@@ -50,6 +53,7 @@ public class KnightController {
     @RequestMapping("/newknight")
     public String createKnight(Model model){
         model.addAttribute("knight",new Knight());
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("timecomponent",timeComponent);
         model.addAttribute("playerinformation", playerInformation);
         return "knightform";

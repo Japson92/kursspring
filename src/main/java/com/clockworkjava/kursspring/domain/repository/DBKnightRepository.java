@@ -1,49 +1,71 @@
 package com.clockworkjava.kursspring.domain.repository;
 
 import com.clockworkjava.kursspring.domain.Knight;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import java.util.Collection;
 import java.util.Optional;
 
 
-public class DBKnightRepository implements KnightRepository{
+public class DBKnightRepository implements KnightRepository {
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Transactional
     @Override
-    public void createKnight(String name, int age){
-        System.out.println("Uzywam bazy danych");
+    public void createKnight(String name, int age) {
+
+        Knight knight = new Knight(name, age);
+
+        em.persist(knight);
     }
 
     @Override
-    public Collection<Knight> getAllKnights(){
-        System.out.println("Uzywam bazy danych");
-      return null;
+    public Collection<Knight> getAllKnights() {
+        return em.createQuery("From Knight", Knight.class).getResultList();
     }
 
     @Override
-    public Optional<Knight> getKnight(String name){
-        System.out.println("Uzywam bazy danych");
-        return null;
+    public Optional<Knight> getKnight(String name) {
+        Knight knightByName = em.createQuery("From Knight k WHERE k.name=:name", Knight.class)
+                .setParameter("name", name).getSingleResult();
+        return Optional.ofNullable(knightByName);
     }
 
     @Override
-    public void deleteKnight(Integer id){
-        System.out.println("Uzywam bazy danych");
-
-    }
-    @Override
-    @PostConstruct
-    public void build(){
+    @Transactional
+    public void deleteKnight(Integer id) {
+        em.remove(id);
 
     }
 
     @Override
+    public void build() {
+
+    }
+
+    @Override
+    @Transactional
     public void createKnight(Knight knight) {
-        System.out.println("Uzywam bazy danych");
+        em.persist(knight);
     }
 
     @Override
     public Knight getKnightById(Integer id) {
-        System.out.println("Uzywam bazy danych");
-        return null;
+        return em.find(Knight.class, id);
     }
+
+    @Transactional
+    @Override
+    public void updateKnight(int id, Knight knight) {
+
+        em.merge(knight);
+    }
+
 
 }
