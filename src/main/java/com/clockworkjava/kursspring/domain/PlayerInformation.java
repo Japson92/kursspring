@@ -31,8 +31,8 @@ public class PlayerInformation {
     public PlayerInformation() {
     }
 
-    public PlayerInformation(String username, String password) {
-        this.username = username;
+    public PlayerInformation(String userName, String password) {
+        this.username = userName;
         this.password = password;
         this.enabled = true;
     }

@@ -2,11 +2,7 @@ package com.clockworkjava.kursspring.utils;
 
 import com.clockworkjava.kursspring.domain.PlayerInformation;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.security.PrivateKey;
+import javax.persistence.*;
 
 @Entity
 public class Role {
@@ -22,9 +18,9 @@ public class Role {
     public Role() {
     }
 
-    public Role(String username, String userrole) {
-        this.username = username;
-        this.role = userrole;
+    public Role(String userName, String userRole) {
+        this.username = userName;
+        this.role = userRole;
     }
 
     @Override

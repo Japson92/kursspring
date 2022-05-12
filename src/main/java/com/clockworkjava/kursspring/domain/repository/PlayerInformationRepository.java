@@ -13,9 +13,9 @@ public class PlayerInformationRepository {
     EntityManager em;
     @Transactional
     public void createPLayerInformation(PlayerInformation playerInformation) {
-        PlayerInformation pi = new PlayerInformation();
 
-        em.persist(pi);
+
+        em.persist(playerInformation);
     }
 
     public PlayerInformation getFirst() {

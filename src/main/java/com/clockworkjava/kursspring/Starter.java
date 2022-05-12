@@ -42,9 +42,9 @@ public class Starter implements CommandLineRunner {
 
         knightRepository.createKnight("Percival", 32);
 
-        PlayerInformation playerInformation1 = new PlayerInformation("user1","user1");
+        PlayerInformation playerInformation1 = new PlayerInformation("user1","{noop}user1");
         playerInformationRepository.createPLayerInformation(playerInformation1);
-        PlayerInformation playerInformation2 = new PlayerInformation("user2","user2");
+        PlayerInformation playerInformation2 = new PlayerInformation("user2","{noop}user2");
         playerInformationRepository.createPLayerInformation(playerInformation2);
 
         Role user1RoleUSER = new Role("user1","USER");

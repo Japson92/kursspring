@@ -11,18 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class KursspringApplicationTests {
 
-	@Autowired
-	Knight knight;
 
-	@Autowired
-    InMemoryRepository inMemoryRepository;
 	@Test
 	public void contextLoads() {
 	}
 
-	@Test
-	public void testCastle(){
-		String except = "Znajduje sie tu zamek o nazwie East Watch. Zamieszkaly przez rycerza Rycerz o imieniu Lancelot(29). Zadanie: Uratuj ksiezniczke";
-		assertEquals(except, inMemoryRepository.toString());
-	}
 }
